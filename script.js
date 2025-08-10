@@ -1,14 +1,18 @@
+//Linked to the input HTML elements
 const userIncome = document.getElementById("numberInput");
 const userExpense = document.getElementById("userInputExpense");
 const userForm = document.getElementById("userForm");
+let incomeDescription = document.getElementById("incomeDescription");
+let expenseDescription = document.getElementById("expenseDescription");
+
+//Linked to the divs in the html Used to display the income and expenses
+let incomeArray = document.getElementById("incomeDisplay");
+let expenseArray = document.getElementById("expenseDisplay");
+let budgetSummary = document.getElementById("summary");
+
+//The total and Clear BUttons
 const totalBtn = document.getElementById("totalBtn");
 const clearBtn = document.getElementById("clearBtn");
-
-let incomeArray = document.getElementById("incomeDisplay");
-let incomeDescription = document.getElementById("incomeDescription");
-let expenseArray = document.getElementById("expenseDisplay");
-let expenseDescription = document.getElementById("expenseDescription");
-let budgetSummary = document.getElementById("summary");
 
 let income = [];
 let expense = [];
@@ -18,6 +22,7 @@ let expenseDesArray = [];
 let totalIncome = 0;
 let totalExpense = 0;
 
+//Displays a red background if the input values is empty
 const arrayInput = () => {
 	if (userIncome.value == "" || incomeDescription.value == "") {
 		userIncome.style.backgroundColor = "red";
@@ -35,18 +40,10 @@ const arrayInput = () => {
 		expense.push(userExpense.value);
 	}
 };
-// const arrayDisplay = () => {
-// 	for (let i = 0; i < incomeDescription.length; i++) {
-// 		incomeArray += `${incomeDescription[i]} : $${income[i]}`;
-// 	}
-// 	return incomeArray;
 
-// 	// expenseArray.textContent = expense;
-// 	// userIncome.value = "";
-// 	// userExpense.value = "";
-// };
 let totalBudget = 0;
 class Budget {
+	//Gets value from the
 	constructor(clientIncome, clientExpense) {
 		//the arguments will be income and expense array
 		this.clientIncome = clientIncome;
