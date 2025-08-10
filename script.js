@@ -2,31 +2,46 @@ const userIncome = document.getElementById("numberInput");
 const userExpense = document.getElementById("userInputExpense");
 const userForm = document.getElementById("userForm");
 const totalBtn = document.getElementById("totalBtn");
-let incomeArray = document.getElementById("income");
-let expenseArray = document.getElementById("expense");
+
+let incomeArray = document.getElementById("incomeDisplay");
+let incomeDescription = document.getElementById("incomeDescription");
+let expenseArray = document.getElementById("expenseDisplay");
+let expenseDescription = document.getElementById("expenseDescription");
 let budgetSummary = document.getElementById("summary");
+
 const income = [];
 const expense = [];
+const incomeDesArray = [];
+const expenseDesArray = [];
+
 let totalIncome = 0;
 let totalExpense = 0;
 
 const arrayInput = () => {
-	if (userIncome.value == "") {
+	if (userIncome.value == "" && incomeDesArray) {
 		userIncome.style.backgroundColor = "red";
-		userIncome.textContent = "Use number values only";
 	} else {
+		incomeDesArray.push(incomeDescription.value);
 		income.push(userIncome.value);
-		console.log(`Your income = $${income}`);
 	}
 
 	if (userExpense.value == "") {
-		console.log("use a valid expense");
+		userExpense.style.backgroundColor = "red";
 	} else {
+		expenseDesArray.push(expenseDescription.value);
 		expense.push(userExpense.value);
-		console.log(`Your expense = $${expense}`);
 	}
 };
+// const arrayDisplay = () => {
+// 	for (let i = 0; i < incomeDescription.length; i++) {
+// 		incomeArray += `${incomeDescription[i]} : $${income[i]}`;
+// 	}
+// 	return incomeArray;
 
+// 	// expenseArray.textContent = expense;
+// 	// userIncome.value = "";
+// 	// userExpense.value = "";
+// };
 let totalBudget = 0;
 class Budget {
 	constructor(clientIncome, clientExpense) {
@@ -47,6 +62,18 @@ class Budget {
 		}
 		return totalExpense;
 	}
+	arrayIncomeDisplay() {
+		for (let i = 0; i < incomeDesArray.length; i++) {
+			incomeArray.textContent += `${incomeDesArray[i]} : $${income[i]} | `;
+		}
+		return incomeArray.textContent;
+	}
+	arrayExpenseDisplay() {
+		for (let i = 0; i < expenseDesArray.length; i++) {
+			expenseArray.textContent += `${expenseDesArray[i]} : $${expense[i]} | `;
+		}
+		return expenseArray.textContent;
+	}
 	personalbudgetSummary() {
 		totalBudget = eval(this.budgetIncome() - this.budgetExpense());
 		return totalBudget;
@@ -59,10 +86,6 @@ const person1 = new Budget(income, expense);
 userForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	arrayInput();
-	incomeArray.textContent = income;
-	expenseArray.textContent = expense;
-	userIncome.value = "";
-	userExpense.value = "";
 });
 
 totalBtn.addEventListener("click", (e) => {
@@ -73,4 +96,6 @@ totalBtn.addEventListener("click", (e) => {
 	}).format(
 		person1.personalbudgetSummary() //Intl.number formate allows the number to appear as a currency;
 	);
+	incomeArray.innerText = person1.arrayIncomeDisplay();
+	expenseArray.innertext = person1.arrayExpenseDisplay();
 });

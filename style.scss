@@ -1,57 +1,70 @@
-$primaryBtn: red;
+$primaryBtn: rgb(8, 255, 29);
 $secondaryBtn: rgb(213, 145, 145);
 @mixin box-property {
-	border-radius: 10px;
-	border: dotted 2px rgba(0, 83, 35, 0.809);
+	// border-radius: 10px;
+	border: solid 2px rgba(0, 83, 35, 0.809);
 	text-align: center;
 	align-content: center;
+	font-family: Helvetica, sans-serif;
+	font-size: 1.2rem;
+	margin: 0.5rem 1rem;
+}
+@mixin button-style {
+	width: 20%;
+	justify-self: center;
+	margin: 0.5rem;
 }
 
-.user-container {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(4, 1fr);
-	margin: 0 auto;
-	gap: 10px;
-	height: 80vh;
+@mixin input-style {
+	height: 2rem;
+	width: 80%;
+	background-color: rgba(0, 0, 0, 0.107);
+}
+html {
 	background-color: rgba(11, 255, 27, 0.552);
 }
+
+body {
+	input {
+		@include box-property();
+		@include input-style();
+	}
+	button {
+		@include button-style();
+		@include box-property();
+	}
+}
+.user-container {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	background-color: rgb(250, 250, 250);
+}
 .user-input {
-	grid-row: 1/1;
-	@include box-property;
 }
 .user-input--btn {
 	background-color: $primaryBtn;
-	grid-row: 3;
-	grid-column: 1;
-	@include box-property;
 }
 
 .user-input-expense {
-	grid: 1/2;
-	@include box-property;
 }
 
 .budget-income {
 	background-color: orange;
-	grid: 2/1;
 	@include box-property;
 }
 .budget-expense {
 	background-color: blue;
-	grid: 2/2;
 	@include box-property;
 }
 
 .budget-btn {
-	grid-row: 3;
-	grid-column: 2;
+	background-color: $secondaryBtn;
 	@include box-property;
+	@include button-style;
 }
 
 .budget-summary {
-	grid-row: 4;
-	grid-column: 1/3;
 	background-color: yellow;
 	@include box-property;
 }

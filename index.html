@@ -12,14 +12,26 @@
 	<body>
 		<section>
 			<form id="userForm" class="user-container">
+				<input
+					type="text"
+					class="user-description-income"
+					id="incomeDescription"
+					placeholder="Your Income Description"
+				/>
 				<input type="text" class="user-input" id="numberInput" />
+				<div class="budget-income" id="incomeDisplay"></div>
 				<button type="submit" class="user-input--btn" id="inputBtn">
 					Submit
 				</button>
+				<input
+					type="text"
+					class="user-description-expense"
+					id="expenseDescription"
+					placeholder="Your Expense Description"
+				/>
 				<input type="text" class="user-input-expense" id="userInputExpense" />
 				<button type="click" class="budget-btn" id="totalBtn">Budget</button>
-				<div class="budget-income" id="income">income</div>
-				<div class="budget-expense" id="expense">expense</div>
+				<div class="budget-expense" id="expenseDisplay"></div>
 				<div class="budget-summary" id="summary">asdf</div>
 			</form>
 		</section>
