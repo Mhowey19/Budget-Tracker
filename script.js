@@ -2,6 +2,8 @@ const userIncome = document.getElementById("numberInput");
 const userExpense = document.getElementById("userInputExpense");
 const userForm = document.getElementById("userForm");
 const totalBtn = document.getElementById("totalBtn");
+let incomeArray = document.getElementById("income");
+let expenseArray = document.getElementById("expense");
 let budgetSummary = document.getElementById("summary");
 const income = [];
 const expense = [];
@@ -10,11 +12,13 @@ let totalExpense = 0;
 
 const arrayInput = () => {
 	if (userIncome.value == "") {
-		console.log("Use a valid income");
+		userIncome.style.backgroundColor = "red";
+		userIncome.textContent = "Use number values only";
 	} else {
 		income.push(userIncome.value);
 		console.log(`Your income = $${income}`);
 	}
+
 	if (userExpense.value == "") {
 		console.log("use a valid expense");
 	} else {
@@ -23,6 +27,7 @@ const arrayInput = () => {
 	}
 };
 
+let totalBudget = 0;
 class Budget {
 	constructor(clientIncome, clientExpense) {
 		//the arguments will be income and expense array
@@ -35,11 +40,16 @@ class Budget {
 		}
 		return totalIncome;
 	}
+	//loops through the expenses array and add each value within the array.
 	budgetExpense() {
 		for (let i = 0; i < this.clientExpense.length; i++) {
 			totalExpense += eval(this.clientExpense[i]);
 		}
 		return totalExpense;
+	}
+	personalbudgetSummary() {
+		totalBudget = eval(this.budgetIncome() - this.budgetExpense());
+		return totalBudget;
 	}
 }
 
@@ -49,25 +59,18 @@ const person1 = new Budget(income, expense);
 userForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	arrayInput();
+	incomeArray.textContent = income;
+	expenseArray.textContent = expense;
+	userIncome.value = "";
+	userExpense.value = "";
 });
 
 totalBtn.addEventListener("click", (e) => {
 	e.preventDefault();
-
-	let personBudgetSummary = person1.budgetIncome() - person1.budgetExpense();
-
 	budgetSummary.textContent = Intl.NumberFormat("en-US", {
 		style: "currency",
 		currency: "USD",
-	}).format(personBudgetSummary);
-	console.log(
-		Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
-			person1.budgetIncome() //Intl.number formate allows the number to appear as a currency
-		)
-	);
-	console.log(
-		Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
-			person1.budgetExpense()
-		)
+	}).format(
+		person1.personalbudgetSummary() //Intl.number formate allows the number to appear as a currency;
 	);
 });

@@ -6,18 +6,22 @@
 		<title>Budget Tracker</title>
 		<link href="style.css" rel="stylesheet" />
 	</head>
+	<header>
+		<h1>Budget Tracker</h1>
+	</header>
 	<body>
-		<section class="user-container">
-			<form id="userForm">
-				<label></label>
+		<section>
+			<form id="userForm" class="user-container">
 				<input type="text" class="user-input" id="numberInput" />
 				<button type="submit" class="user-input--btn" id="inputBtn">
 					Submit
 				</button>
 				<input type="text" class="user-input-expense" id="userInputExpense" />
-				<button type="click" id="totalBtn">Total</button>
+				<button type="click" class="budget-btn" id="totalBtn">Budget</button>
+				<div class="budget-income" id="income">income</div>
+				<div class="budget-expense" id="expense">expense</div>
+				<div class="budget-summary" id="summary">asdf</div>
 			</form>
-			<div class="budget-summary" id="summary"></div>
 		</section>
 	</body>
 	<script defer src="script.js"></script>
