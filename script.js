@@ -43,18 +43,19 @@ const arrayInput = () => {
 
 let totalBudget = 0;
 class Budget {
-	//Gets value from the
+	//Gets value from the income and expenses once called
 	constructor(clientIncome, clientExpense) {
 		//the arguments will be income and expense array
 		this.clientIncome = clientIncome;
 		this.clientExpense = clientExpense;
 	}
 	budgetIncome() {
+		//Loops through the client income array's length and adds each value
 		totalIncome = 0;
 		for (let i = 0; i < this.clientIncome.length; i++) {
 			totalIncome += eval(this.clientIncome[i]);
 		}
-		return totalIncome;
+		return totalIncome; //returns the total of the income array
 	}
 	//loops through the expenses array and add each value within the array.
 	budgetExpense() {
@@ -65,11 +66,12 @@ class Budget {
 		return totalExpense;
 	}
 	arrayIncomeDisplay() {
+		//Loops to display the description array and the income array
 		let displayText = "";
 		for (let i = 0; i < incomeDesArray.length; i++) {
 			displayText += `${incomeDesArray[i]} : $${income[i]} | `;
 		}
-		incomeArray.textContent = displayText;
+		incomeArray.textContent = displayText; //Linked to the div to display the displayText value
 		return displayText;
 	}
 	arrayExpenseDisplay() {
@@ -81,8 +83,9 @@ class Budget {
 		return displayText;
 	}
 	personalbudgetSummary() {
+		//Finds the budget after the two methods
 		totalBudget = eval(this.budgetIncome() - this.budgetExpense());
-		return totalBudget;
+		return totalBudget; //returns the total budget
 	}
 }
 
@@ -97,6 +100,7 @@ userForm.addEventListener("submit", (e) => {
 	person1.arrayExpenseDisplay();
 });
 
+//resets the values
 clearBtn.addEventListener("click", (e) => {
 	window.location.reload();
 });
@@ -110,6 +114,7 @@ totalBtn.addEventListener("click", (e) => {
 	}).format(
 		person1.personalbudgetSummary() //Intl.number formate allows the number to appear as a currency;
 	);
+	//Displays the values to the dom
 	incomeArray.innerText = person1.arrayIncomeDisplay();
 	expenseArray.innerText = person1.arrayExpenseDisplay();
 });
