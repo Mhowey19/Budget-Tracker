@@ -1,0 +1,10 @@
+$primaryBtn: red;
+$secondaryBtn: rgb(213, 145, 145);
+.user-input--btn {
+	background-color: $primaryBtn;
+}
+
+.user-container {
+	display: flex;
+	margin: 0 auto;
+}
